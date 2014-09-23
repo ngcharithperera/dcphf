@@ -32,8 +32,9 @@ TEMP_DB_NAME = 'TEMP'
 
 #Setting Evaluation Parameters
 TOTAL_NUMBER_OF_CONTEXT_PROPERTIES = 11
-TOTAL_NUMBER_OF_SIMULATED_REQUESTS = 1000
-WEIGHTED_SCALES_LIST = [1, 5, 10, 50, 100, 500, 1000]
+TOTAL_NUMBER_OF_SIMULATED_REQUESTS = 100
+WEIGHTED_SCALES_LIST = [1,  10, 100]
+# WEIGHTED_SCALES_LIST = [1, 5, 10, 50, 100, 500, 1000]
 TOTAL_NUMBER_OF_SENSORS_LIST = [100,
                                 500,
                                 1000,
@@ -50,7 +51,7 @@ TOTAL_NUMBER_OF_SENSORS_LIST = [100,
                                 500000000,
                                 1000000000]
 
-
+confidence = 200
 
 
 

@@ -33,7 +33,10 @@ def main():
                                                   WEIGHTED_SCALES_LIST)
             for number_of_sensors_requested in xrange(1, total_number_of_sensors):
                 percentage_of_sensors_requested = (number_of_sensors_requested / total_number_of_sensors) * 100.00
+                confidence_counter = 0
                 for margin_of_error in xrange(1, total_number_of_sensors - number_of_sensors_requested):
+                    if confidence_counter > confidence:
+                        break
                     margin_of_error_percent = (margin_of_error /
                                                (total_number_of_sensors - number_of_sensors_requested)) * 100.00
                     for ith_user_request in xrange(1, TOTAL_NUMBER_OF_SIMULATED_REQUESTS):
@@ -50,6 +53,11 @@ def main():
                                                                 number_of_sensors_requested - margin_of_error,
                                                                 total_number_of_sensors)
                             accuracy = accuracy_analyzer.measure(table, number_of_sensors_requested)
+                            if accuracy >= 100:
+                                confidence_counter += 1
+                            else:
+                                confidence_counter = 0
+                            logging.debug("confidence_counter" + str(confidence_counter))
                             data_row_full = [number_of_context_properties, total_number_of_sensors,
                                              number_of_sensors_requested, percentage_of_sensors_requested, margin_of_error, margin_of_error_percent,
                                              ith_user_request, total_time_brute_force, total_time_cphf, accuracy,
@@ -67,7 +75,7 @@ def main():
                                                                          util.WEIGHTED_SCALES_LIST[table])
                             logging.debug(data_row_summary)
                             table += 1
-                    db_manager.store_data(data_row_summary[0], data_row_summary[1:], db_manager.RESULTS_TABLE_SUMMARY)
+                    # db_manager.store_data(data_row_summary[0], data_row_summary[1:], db_manager.RESULTS_TABLE_SUMMARY)
             #                     logger_manager.log_full_record(full_record)
             #                     logging.debug(total_number_of_sensors)
             # visualization_manager.prepare_data()

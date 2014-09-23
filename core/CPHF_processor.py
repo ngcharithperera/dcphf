@@ -70,7 +70,7 @@ def do(simulated_requests_data, table, number_of_sensors_to_remove, total_number
                                                           user_preferences)
         logging.debug(type(similiarity_index))
         db_manager.store_data(sensor_id, [similiarity_index], util.temp_data_table_name_generator(dcphf=True)[table])
-        logging.debug(sensor_id, similiarity_index)
+        # logging.debug(sensor_id, similiarity_index)
         # add a dummy procedure to order the table
     time_end = time.clock()
     time_total = time_end - time_start

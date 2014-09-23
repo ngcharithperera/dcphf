@@ -24,4 +24,4 @@ def measure(table, number_of_sensors_requested):
     cursor.execute(sql_accuracy)
     results = cursor.fetchall()
     logging.debug(results[0][0] / number_of_sensors_requested * 100.0000)
-    return results[0][0] / number_of_sensors_requested
+    return results[0][0] / number_of_sensors_requested * 100.0000
